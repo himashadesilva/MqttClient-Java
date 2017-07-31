@@ -18,7 +18,7 @@ public class Subscribe implements MqttCallback {
         options.setPassword(broker.PASSWORD.toCharArray());
 
         MemoryPersistence persistence = new MemoryPersistence();
-
+        client = new MqttClient(broker.BROKER,clientId,persistence);
         client.setCallback(this);
         client.connect(options);
         client.subscribe(topic);
