@@ -14,7 +14,7 @@ public class Publish {
     Broker broker = new Broker();
     private MqttClient client;
 
-    public Publish(boolean cleanSession, String clientId, String topic) throws MqttException {
+    public Publish(boolean cleanSession, String clientId) throws MqttException {
         MqttConnectOptions option = new MqttConnectOptions();
         option.setCleanSession(cleanSession);
         option.setUserName(broker.USER_NAME);
@@ -33,7 +33,9 @@ public class Publish {
     }
 
     public void close() throws MqttException {
+        System.out.println("closing connections...");
         client.disconnect();
         client.close();
+        System.out.println("connection closed");
     }
 }
